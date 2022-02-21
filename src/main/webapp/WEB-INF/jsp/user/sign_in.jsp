@@ -17,7 +17,7 @@
 			</div>
 	
 			<div class="d-flex justify-content-center mb-3">
-				<div><input type="text" id="password" name="password" class="form-control" placeholder="비밀번호"></div>
+				<div><input type="password" id="password" name="password" class="form-control" placeholder="비밀번호"></div>
 			</div>
 		
 			<div class="d-flex justify-content-center mb-3">
@@ -31,3 +31,4 @@
 	</section>
 	
 </section>
+
