@@ -10,4 +10,6 @@ import com.sns.post.model.Post;
 public interface PostDAO {
 
 	public List<Post> selectPostList();
+	
+	
 }
