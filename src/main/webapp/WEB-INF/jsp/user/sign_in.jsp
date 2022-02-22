@@ -9,7 +9,7 @@
 	<section class="col-6 d-flex justify-content-center align-items-center">
 		<div>
 			<div class="d-flex justify-content-center mb-5">
-				<div class="display-4 font-weight-bold"><div>In★gram</div></div>
+				<div class="display-4 font-weight-bold"><div id="logo">In★gram</div></div>
 			</div>
 				
 			<div class="d-flex justify-content-center mb-3">
