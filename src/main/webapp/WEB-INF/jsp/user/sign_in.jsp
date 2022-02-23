@@ -8,7 +8,7 @@
 
 <section class="d-flex">
 
-	<section class="log-in-image col-6 d-flex justify-content-center align-items-center">
+	<section class="log-in-image col-6 d-flex justify-content-end mt-5">
 		<div><img src="/images/instagram.png" width=400 height=400 alt="image"></div>
 	</section>
 	
@@ -75,5 +75,7 @@
 			});
 			
 		});
+		
+		
 	});
 </script>

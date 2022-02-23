@@ -23,6 +23,11 @@ public class UserRestController {
 	@Autowired
 	private UserBO userBO;
 	
+	/**
+	 * 회원가입시 로그인 중복확인
+	 * @param loginId
+	 * @return
+	 */
 	@RequestMapping("/is_duplicated_id")
 	public Map<String, Object> isDuplicatedId(
 			@RequestParam("loginId") String loginId) {
@@ -36,6 +41,14 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 회원가입 - ajax 호출
+	 * @param loginId
+	 * @param password
+	 * @param name
+	 * @param email
+	 * @return
+	 */
 	@PostMapping("/sign_up")
 	public Map<String, Object> signUp(
 			@RequestParam("loginId") String loginId,
@@ -61,6 +74,13 @@ public class UserRestController {
 		return result;
 	}
 	
+	/**
+	 * 로그인 - ajax 호출
+	 * @param loginId
+	 * @param password
+	 * @param request
+	 * @return
+	 */
 	@PostMapping("/sign_in")
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,

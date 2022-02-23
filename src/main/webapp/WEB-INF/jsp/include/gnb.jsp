@@ -5,7 +5,9 @@
 
 <!-- 세션이 있을때만(로그인 되었을 때만) 출력 -->
 
-<div class="d-flex justify-content-end mt-5">
+<div class="display-4 font-weight-bold ml-5"><div id="logo">In★gram</div></div>
+	
+<div class="d-flex justify-content-end ">
 	<div>
 		<c:if test="${not empty userName}">
 			<span class="text-secondary"><b>${userName}</b><span class="text-dark">님 안녕하세요</span></span>

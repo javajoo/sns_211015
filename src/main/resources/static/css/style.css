@@ -1,8 +1,6 @@
 @charset "UTF-8";
 
-a {color: black;}
-
-a:hover {text-decoration: none; background-color: lime;}
+a:hover {text-decoration: none;}
 
 #logo {font-style: italic;}
 
@@ -12,7 +10,8 @@ header {
 
 
 .contents {
-	height: 500px;
+	 height: 500px; 
+	 background-color: #F9F9F9;
 }
 
 footer {

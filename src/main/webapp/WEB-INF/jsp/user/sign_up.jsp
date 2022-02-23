@@ -2,9 +2,11 @@
     pageEncoding="UTF-8"%>
 
 	<form id="signUpForm" method="post" action="/user/sign_up">
+	
+		<div class="d-flex justify-content-center ">
 
-		<div class="d-flex justify-content-center">
 			<div>
+					<div class="pt-4"><h4>회원가입</h4></div><hr>	
 				<div class="mb-3"><img src="/images/image.png" alt="image" width="100px" height="100px"></div>
 		
 		<div class="d-flex">
@@ -127,11 +129,11 @@
 			
 			$.post(url,params)
 			.done(function(data) {
-				if (data.resykt = 'success') {
+				if (data.result = 'success') {
 					alert('회원 가입을 환영 합니다. 로그인을 해주세요');
 					location.href= "/user/sign_in_view";
 				} else {
-					alert('회원 가입에 실패했습니다 다시 시도해주세요');
+					alert('회원 가입에 실패했습니다. 다시 시도해주세요');
 				}
 			});
 			
