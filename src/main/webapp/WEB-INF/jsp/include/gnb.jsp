@@ -10,8 +10,9 @@
 		<div class="mt-5">
 			<c:if test="${not empty userName}">
 				<div class="text-secondary"><b>${userName}</b><span class="text-dark">님 안녕하세요</span></div>
-			</c:if>
+			
 			<div><a href="/user/sign_out" class="font-weight-bold text-primary">로그아웃</a></div>
+			</c:if>
 		</div>
 
 </div>

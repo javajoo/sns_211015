@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+.card {box-shadow: 3px 3px 3px 3px #ccc;}
 a:hover {text-decoration: none;}
 
 #logo {font-style: italic;}
@@ -9,10 +10,10 @@ header {
 }
 
 
-.contents {
+/* .contents {
 	 height: 500px; 
 	 background-color: #F9F9F9;
-}
+} */
 
 footer {
 	height: 100px;
@@ -29,5 +30,9 @@ input[type="password"] {
 
 button[type="button"] {
 	width: 300px;
+}
+
+.timeline-content {
+	border: none;
 }
 
