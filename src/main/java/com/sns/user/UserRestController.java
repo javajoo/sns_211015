@@ -97,11 +97,14 @@ public class UserRestController {
 		
 		if (user != null) {
 			HttpSession session = request.getSession();
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userName", user.getName());
+			session.setAttribute("userLoginId", user.getLoginId());
 		} else {
 			result.put("result", "error");
 			result.put("errorMessage", "존재하지 않는 사용자 입니다. 관리자에게 문의해주세요.");
 		}
+		
 	
 		return result;
 	}
