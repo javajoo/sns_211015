@@ -1,28 +1,40 @@
 @charset "UTF-8";
 
-.card {box-shadow: 3px 3px 3px 3px #ccc;}
-a:hover {text-decoration: none;}
+.login-box-bottom {width: 300px;}
+.login-box {background-color: white;}
 
-#logo {font-style: italic;}
+.signUp-box {background-color: white;}
+.card {
+	box-shadow: 3px 3px 3px 3px #ccc;
+}
+
+body {
+	background-color: #F9F9F9;
+}
+
+a:hover {
+	text-decoration: none;
+}
+
+#logo {
+	font-style: italic;
+}
 
 header {
 	height: 100px;
+	
 }
 
 
-/* .contents {
-	 height: 500px; 
-	 background-color: #F9F9F9;
-} */
-
 footer {
 	height: 100px;
+	
+
 }
 
 input[type="text"] {
 	width: 300px;
 }
-
 
 input[type="password"] {
 	width: 300px;

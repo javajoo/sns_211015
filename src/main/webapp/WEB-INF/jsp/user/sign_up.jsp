@@ -3,15 +3,14 @@
 
 	<form id="signUpForm" method="post" action="/user/sign_up">
 	
-		<div class="d-flex justify-content-center ">
+		<div class=" d-flex justify-content-center">
 
-			<div>
-					<div class="pt-4"><h4>회원가입</h4></div><hr>	
-				<div class="mb-3"><img src="/images/image.png" alt="image" width="100px" height="100px"></div>
+			<div class="signUp-box border p-3 m-5">
+			<div class="text-secondary my-5"><b>친구들의 사진과 동영상을 보려면 가입하세요</b></div>	
 		
 		<div class="d-flex">
 			<input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디">
-			<div class="pl-3"><button type="button" id="loginIdCheckBtn" class="form-control btn-success col-4">중복확인</button></div>
+			<div class="pl-3"><button type="button" id="loginIdCheckBtn" class="form-control btn-light col-4"><b>중복확인</b></button></div>
 		</div>
 		
 		<div id="idCheckLength" class="small text-primary font-weight-bold d-none">ID를 4자 이상 입력 해주세요.</div>
@@ -30,8 +29,12 @@
 			<input type="text" id="email" name="email" class="form-control" placeholder="이메일">
 		</div>
 		
-		<button type="submit" id="signUpBtn" class="form-control btn-info mt-3 col-2">회원가입</button>
+		<button type="submit" id="signUpBtn" class="form-control btn-primary mt-3 col-2 mb-5">회원가입</button>
 		
+		<div class="border rounded py-3 text-center login-box-bottom">
+				계정이 있으신가요? <a href="/user/sign_in_view">로그인</a>
+			</div>
+			
 			</div>
 		</div>
 	</form>
@@ -138,7 +141,7 @@
 			});
 			
 		});
-
+	
 		
 	});
 </script>

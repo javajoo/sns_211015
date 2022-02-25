@@ -5,7 +5,7 @@
 
 <!-- 세션이 있을때만(로그인 되었을 때만) 출력 -->
 <div class="d-flex justify-content-between">
-<div class="display-4 font-weight-bold ml-5"><div id="logo">In★gram</div></div>
+<div class="display-4 font-weight-bold ml-5"><div id="logo">Instylegram</div></div>
 
 		<div class="mt-5">
 			<c:if test="${not empty userName}">

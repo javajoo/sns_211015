@@ -55,7 +55,10 @@ public class PostRestController {
 			return result;
 		}
 		
-		// userId, userLoginId, subject, content, file -> BO insert 요청
+		// userId, userLoginId, content, file -> BO insert 요청
+		postsBO.addPost(userId, userLoginId, content, file);
+		
+		
 		
 		return result;
 	}
