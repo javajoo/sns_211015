@@ -30,7 +30,7 @@
  			,#{content}
  			,#{imagePath}
  			,NOW()
- 			,NOW()
+ 			,NOW()	
  		)
  	</insert>
  </mapper>

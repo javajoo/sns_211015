@@ -6,10 +6,10 @@
 
 		<!-- 글쓰기 영역 - 로그인 된 상태에서만 보임 -->
 		<c:if test="${not empty userName}">
-			<div id="writeBox" class="mb-3 border rounded">
+			<div id="writeBox" class="mb-3 border rounded bg-white">
 				<textarea id="content" name="content" rows="6"
 					placeholder="내용을 입력해주세요" class="timeline-content form-control"></textarea>
-				<div class="d-flex justify-content-between m-3">
+				<div class="d-flex justify-content-between m-3 ">
 					<input type="file" id="file" name="file"
 						accept=".jpg,.png,.jpeg,.gif" class="d-none"> <a href="#"
 						id="fileUpLoadBtn"><img src="/image/upload.jpg" width="50"></a>
@@ -25,44 +25,56 @@
 
 
 		<div class="card  ">
-		<c:forEach items="${postList}" var="postList">
-			<div class=" d-flex justify-content-between">
-				<div class="display-4 font-weight-bold">marobiana</div>
-				<div>
-					<a href="#"><img src="/image/more-icon.png" width="50"></a>
-				</div>
-			</div>
-			<div>
-				<img src="${postList.imagePath}" alt="image" class="w-100 mt-2 mb-2"
-					height="300"> 
-					<a href="#"><img src="/image/heart-icon.png" alt="image"
-					width="30"></a>
-					<a href="#"><img src="/image/heart-icon2.png" alt="image"
-					width="30" class="d-none"></a>
-					</a>좋아요 11개
-				<div class="d-flex mt-3 mb-3">
-					<div>${postList.userId}</div>
-					<div>${postList.content}</div>
-				</div>
-				<hr>
-				<div class="mt-3 mb-3">
-					<b>댓글</b>
-				</div>
-				<div class="d-flex">
-					<div>marobiana</div>
-					<div>댓글 내용 입니다~<a href="#"><img src="/image/x-icon.png" width="10" height="10"></a></div>
-				</div>
-
-				<div class="input-group mb-3">
-					<input type="text" class="form-control" placeholder="댓글을 입력해주세요">
-					<div class="input-group-prepend">
-						<span class="btn input-group-text">게시</span>
+			<c:forEach items="${postList}" var="post">
+				<div class=" d-flex justify-content-between">
+					<div class="display-4 font-weight-bold">유저아이디</div>
+					<div>
+						<a href="#"><img src="/image/more-icon.png" width="50"></a>
 					</div>
-	   	
-				
 				</div>
-			</div>
-</c:forEach>
+				<div>
+					<img src="${post.imagePath}" alt="image"
+						class="w-100 mt-2 mb-2" height="300"> <a href="#"><img
+						src="/image/heart-icon.png" alt="image" width="30"></a> <a
+						href="#"><img src="/image/heart-icon2.png" alt="image"
+						width="30" class="d-none"></a> </a>좋아요 11개
+					<div class="d-flex mt-3 mb-3">
+						<div>${post.userId}</div>
+						<div>${post.content}</div>
+					</div>
+					<hr>
+					<div class="mt-3 mb-3">
+						<b>댓글</b>
+					</div>
+					<div class="d-flex">
+						<div><b>유저아이디</b></div>
+						<div>
+							  댓글 내용 입니다~<a href="#"><img src="/image/x-icon.png" width="10"
+								height="10"></a>
+						</div>
+					</div>
+
+					<!-- 로그인 된 상태에서만 쓸 수 있다 -->
+					<c:if test="${not empty userId}">
+						<div class="input-group mb-3">
+
+							<input type="text" class="form-control"
+								id="commentText${post.id}" placeholder="댓글을 입력해주세요">
+							<div class="input-group-prepend">
+								<span class="btn input-group-text commentBtn"
+									data-post-id="${post.id}">게시</span>
+							</div>
+
+
+							<%-- <input type="text" placeholder="댓글을 입력해주세요">
+								<button type="button" class="commentBtn" data-post-id="${post.id}">게시</button> --%>
+
+
+
+						</div>
+					</c:if>
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </div>
@@ -98,8 +110,7 @@
 											if (extension.length < 2
 													|| (extension[extension.length - 1] != 'gif'
 															&& extension[extension.length - 1] != 'jpeg'
-															&& extension[extension.length - 1] != 'jpg' 
-															&& extension[extension.length - 1] != 'png')) {
+															&& extension[extension.length - 1] != 'jpg' && extension[extension.length - 1] != 'png')) {
 												alert('이미지 파일만 업로드 할 수 있습니다.');
 												$(this).val(''); // 비워주어야 한다.(파일자체를 지움)
 												$('#fileName').text(''); //파일 이름도 비워준다.
@@ -159,13 +170,29 @@
 														success : function(data) {
 															if (data.result == "success") {
 																alert("저장 되었습니다.");
-																location.reload();
+																location
+																		.reload();
 															}
 														},
 														error : function(e) {
 															alert("메모 저장에 실패했습니다. 관리자에게 문의해주세요.");
 														}
 													});
-										})
+										});
+
+						// 댓글 쓰기 - 게시 버튼 클릭
+						$('.commentBtn').on(
+								'click',
+								function(e) {
+									// 클릭된 게시글
+									var postId = $(this).data('post-id'); //data-post-id
+									alert(postId);
+
+									// commentText2
+									let commentContent = $(
+											'#commentText' + postId).val()
+											.trim();
+									alert(commentContent);
+								});
 					});
 </script>
