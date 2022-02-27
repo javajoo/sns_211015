@@ -30,8 +30,7 @@ public class PostRestController {
 	 */
 	@RequestMapping("/posts")
 	public List<Post> posts() {
-		List<Post> postList = postsBO.getPostList();
-		return postList;
+		return postsBO.getPostList();
 	}
 	
 	@PostMapping("/create")

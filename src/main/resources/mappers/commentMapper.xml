@@ -6,4 +6,9 @@
   	<insert id="insertComment" parameterType="map">
   		
   	</insert>
+  	
+  	<select id="getCommentList" resultType="com.sns.comment.model.Comment">
+  		SELECT *FROM COMMENT 
+  		WHERE POSTID=#{postId}
+  	</select>
 </mapper>

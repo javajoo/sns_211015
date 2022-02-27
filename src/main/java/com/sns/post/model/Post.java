@@ -1,6 +1,9 @@
 package com.sns.post.model;
 
 import java.util.Date;
+import java.util.List;
+
+import com.sns.comment.model.Comment;
 
 public class Post {
 
@@ -10,6 +13,15 @@ public class Post {
 	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
+	private List<Comment> commentList;
+
+	public List<Comment> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<Comment> commentList) {
+		this.commentList = commentList;
+	}
 
 	public int getId() {
 		return id;
@@ -57,6 +69,12 @@ public class Post {
 
 	public void setUpdatedAt(Date updatedAt) {
 		this.updatedAt = updatedAt;
+	}
+
+	@Override
+	public String toString() {
+		return "Post [id=" + id + ", userId=" + userId + ", content=" + content + ", imagePath=" + imagePath
+				+ ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + ", commentList=" + commentList + "]";
 	}
 
 }

@@ -20,6 +20,8 @@ public class CommentRestController {
 			@RequestParam("commend") String commend
 			) {
 		
-		return ;
+		return null;
 	}
+	
+	
 }

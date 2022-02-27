@@ -2,10 +2,11 @@ package com.sns.comment.model;
 
 import java.util.Date;
 
-public class comment {
+public class Comment {
 
 	private int id;
 	private int userId;
+	private String loginId;
 	private int postId;
 	private String content;
 	private Date createdAt;
@@ -59,4 +60,19 @@ public class comment {
 		this.updatedAt = updatedAt;
 	}
 
+	public String getLoginId() {
+		return loginId;
+	}
+
+	public void setLoginId(String loginId) {
+		this.loginId = loginId;
+	}
+
+	@Override
+	public String toString() {
+		return "Comment [id=" + id + ", userId=" + userId + ", loginId=" + loginId + ", postId=" + postId + ", content="
+				+ content + ", createdAt=" + createdAt + ", updatedAt=" + updatedAt + "]";
+	}
+
+	
 }

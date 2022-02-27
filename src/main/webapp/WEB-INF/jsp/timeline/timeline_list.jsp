@@ -46,13 +46,15 @@
 					<div class="mt-3 mb-3">
 						<b>댓글</b>
 					</div>
-					<div class="d-flex">
-						<div><b>유저아이디</b></div>
-						<div>
-							  댓글 내용 입니다~<a href="#"><img src="/image/x-icon.png" width="10"
-								height="10"></a>
+					<c:forEach items="${post.commentList}" var="comment">
+						<div class="d-flex">
+							<div><b>${comment.loginId}</b></div>
+							<div>
+								  ${comment.content}<a href="#"><img src="/image/x-icon.png" width="10"
+									height="10"></a>
+							</div>
 						</div>
-					</div>
+					</c:forEach>
 
 					<!-- 로그인 된 상태에서만 쓸 수 있다 -->
 					<c:if test="${not empty userId}">
