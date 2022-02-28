@@ -79,10 +79,10 @@
 						<div class="input-group mb-3">
 
 							<input type="text" class="form-control"
-								id="commentText${post.id}" placeholder="댓글을 입력해주세요">
+								id="commentText${content.post.id}" placeholder="댓글을 입력해주세요">
 							<div class="input-group-prepend">
 								<span class="btn input-group-text commentBtn"
-									data-post-id="${post.id}">게시</span>
+									data-post-id="${content.post.id}">게시</span>
 							</div>
 
 
@@ -211,6 +211,7 @@
 									let commentContent = $(
 											'#commentText' + postId).val()
 											.trim();
+									// let commentContent = $(this).siblings('input').val(); 동일선상에 있는 형재테그를 가져올 떄 
 									alert(commentContent);
 									
 									$.ajax({
