@@ -1,27 +1,34 @@
-package com.sns.comment;
+package com.sns.Comment;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
-import com.sns.comment.bo.CommentBO;
+import com.sns.Comment.bo.CommentBO;
 
-@RequestMapping("/commend")
+@RequestMapping("/comment")
+@RestController
 public class CommentRestController {
-
+	
 	@Autowired
 	private CommentBO commentBO;
 	
-	@RequestMapping("/create")
-	public Map<String, Object> createCommend(
+	@PostMapping("/create")
+	public Map<String, Object> createComment(
 			@RequestParam("postId") int postId,
-			@RequestParam("commend") String commend
+			@RequestParam("content") String content
 			) {
+	
+	    commentBO.insertComment(postId, postId, content);
+		Map<String, Object> result = new HashMap<>();
+		result.put("result", "success");
 		
-		return null;
+		return result;
 	}
-	
-	
+
 }

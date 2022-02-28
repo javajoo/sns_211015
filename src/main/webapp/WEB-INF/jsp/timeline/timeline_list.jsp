@@ -9,7 +9,7 @@
 			<div id="writeBox" class="mb-3 border rounded bg-white">
 				<textarea id="content" name="content" rows="6"
 					placeholder="내용을 입력해주세요" class="timeline-content form-control"></textarea>
-				<div class="d-flex justify-content-between m-3 ">
+				<div class="d-flex justify-content-between m-1 ">
 					<input type="file" id="file" name="file"
 						accept=".jpg,.png,.jpeg,.gif" class="d-none"> <a href="#"
 						id="fileUpLoadBtn"><img src="/image/upload.jpg" width="50"></a>
@@ -18,7 +18,7 @@
 					<div id="fileName"></div>
 
 					<button type="button" id="saveBtn"
-						class="btn-info form-control col-3">업로드</button>
+						class="btn-primary form-control col-3">업로드</button>
 				</div>
 			</div>
 		</c:if>
@@ -33,8 +33,8 @@
 					</div>
 				</div>
 				<div>
-					<img src="${post.imagePath}" alt="image"
-						class="w-100 mt-2 mb-2" height="300"> <a href="#"><img
+					<img src="${post.imagePath}" alt="image" class="w-100 mt-2 mb-2"
+						height="300"> <a href="#"><img
 						src="/image/heart-icon.png" alt="image" width="30"></a> <a
 						href="#"><img src="/image/heart-icon2.png" alt="image"
 						width="30" class="d-none"></a> </a>좋아요 11개
@@ -46,15 +46,17 @@
 					<div class="mt-3 mb-3">
 						<b>댓글</b>
 					</div>
-					<c:forEach items="${post.commentList}" var="comment">
-						<div class="d-flex">
-							<div><b>${comment.loginId}</b></div>
-							<div>
-								  ${comment.content}<a href="#"><img src="/image/x-icon.png" width="10"
-									height="10"></a>
-							</div>
+
+					<div class="d-flex">
+						<div>
+							<b>유저아이디</b>
 						</div>
-					</c:forEach>
+						<div>
+							댓글입니다<a href="#"><img src="/image/x-icon.png" width="10"
+								height="10"></a>
+						</div>
+					</div>
+
 
 					<!-- 로그인 된 상태에서만 쓸 수 있다 -->
 					<c:if test="${not empty userId}">
@@ -195,6 +197,19 @@
 											'#commentText' + postId).val()
 											.trim();
 									alert(commentContent);
+									
+									$.ajax({
+										type: "post"
+										,url: "/comment/create"
+										,data: {"postId":postId, "content":commentContent}
+									// "postId" : restcontroller 파라미터 , postId: jsp변수!!
+										,success: function(data) {
+											if (data.result == 'success') {
+												alert("댓글이 입력되었습니다.");
+												location.reload();
+											}
+										} 
+									});
 								});
 					});
 </script>

@@ -6,8 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.sns.comment.bo.CommentBO;
-import com.sns.comment.model.Comment;
 import com.sns.common.FileManagerService;
 import com.sns.post.dao.PostDAO;
 import com.sns.post.model.Post;
@@ -17,19 +15,21 @@ public class PostBO {
 
 	@Autowired
 	private PostDAO postDAO;
-	@Autowired
-	private CommentBO commentBO;
+
 	
 	@Autowired
 	private FileManagerService fileManager;
 	
+//	@Autowired
+//	private CommentBO commentBO;
+	
 	public List<Post> getPostList() {
 		List<Post> list = postDAO.selectPostList();
-		for(Post post:list) {
-			int postId = post.getId();
-			List<Comment> commentList = commentBO.getCommentList(postId);
-			post.setCommentList(commentList);
-		}
+//		for(Post post:list) {
+//			int postId = post.getId();
+//			List<Comment> commentList = commentBO.getCommentList(postId);
+//			post.setCommentList(commentList);
+//		}
 		return list;
 	}
 	

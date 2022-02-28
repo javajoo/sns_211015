@@ -8,6 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.sns.Comment.bo.CommentBO;
+import com.sns.Comment.model.Comment;
 import com.sns.post.bo.PostBO;
 import com.sns.post.model.Post;
 import com.sns.timeline.model.ContentView;
@@ -19,8 +21,8 @@ public class TimelineController {
 	@Autowired
 	private PostBO postBO;
 	
-//	@Autowired
-//	private CommentBO commentBO;
+	@Autowired
+	private CommentBO commentBO;
 	
 	
 	//localhost:8080/timeline/timeline_list_view
@@ -35,13 +37,14 @@ public class TimelineController {
 		
 		
 		// POST 내용
-	//	List<Comment> commentList;
+		List<Comment> commentList;
 		
-		model.addAttribute("viewName","timeline/timeline_list");
+		
 		
 		 List<Post> postList = postBO.getPostList();
-		 model.addAttribute("postList",postList);
 		 
+		 model.addAttribute("postList",postList);
+		 model.addAttribute("viewName","timeline/timeline_list");
 		return "template/layout";
 	}
 }
