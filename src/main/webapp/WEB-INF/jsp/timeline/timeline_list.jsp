@@ -25,37 +25,53 @@
 
 
 		<div class="card  ">
-			<c:forEach items="${postList}" var="post">
+			<c:forEach items="${contentList}" var="content">
 				<div class=" d-flex justify-content-between">
-					<div class="display-4 font-weight-bold">유저아이디</div>
+					<div class="display-4 font-weight-bold">${content.user.loginId}</div>
 					<div>
 						<a href="#"><img src="/image/more-icon.png" width="50"></a>
 					</div>
 				</div>
 				<div>
-					<img src="${post.imagePath}" alt="image" class="w-100 mt-2 mb-2"
+					<img src="${content.post.imagePath}" alt="image" class="w-100 mt-2 mb-2"
 						height="300"> <a href="#"><img
 						src="/image/heart-icon.png" alt="image" width="30"></a> <a
 						href="#"><img src="/image/heart-icon2.png" alt="image"
 						width="30" class="d-none"></a> </a>좋아요 11개
+						
+						
+						
+						
+						
+				
 					<div class="d-flex mt-3 mb-3">
-						<div>${post.userId}</div>
-						<div>${post.content}</div>
+					<!-- 댓글 목록 -->
+					<!-- 댓글이 있는 경우만 댓글영역 노출 -->
+					
+						<div>${content.user.loginId} : </div>
+						<div>${content.post.content}</div>
 					</div>
 					<hr>
+						<%-- <c:if test="${not empty content.commentList}"> --%>
 					<div class="mt-3 mb-3">
 						<b>댓글</b>
 					</div>
-
+				<c:forEach items="${content.commentList}" var="comment">
 					<div class="d-flex">
 						<div>
-							<b>유저아이디</b>
+							<b>${comment.user.name}</b>
 						</div>
 						<div>
-							댓글입니다<a href="#"><img src="/image/x-icon.png" width="10"
+							${comment.comment.content}<a href="#"><img src="/image/x-icon.png" width="10"
 								height="10"></a>
 						</div>
-					</div>
+					
+					</div>	</c:forEach>
+					<%-- </c:if> --%>
+
+
+
+
 
 
 					<!-- 로그인 된 상태에서만 쓸 수 있다 -->
@@ -174,8 +190,7 @@
 														success : function(data) {
 															if (data.result == "success") {
 																alert("저장 되었습니다.");
-																location
-																		.reload();
+																location.reload();
 															}
 														},
 														error : function(e) {
@@ -206,7 +221,6 @@
 										,success: function(data) {
 											if (data.result == 'success') {
 												alert("댓글이 입력되었습니다.");
-												location.reload();
 											}
 										} 
 									});

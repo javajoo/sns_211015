@@ -15,7 +15,7 @@ public class FileManagerService {
 	// 한번 설정하면 바꿀 수 없다(상수로 설정)
 	// 워크스페이스안에다가 새로운 폴더 만들어서 저장해준다.(깃까지 들어가면 용량이 커서 복잡)
 	// 경로 마지막에 / 넣어준다!!!!
-	public final static String FILE_UPLOAD_PATH = "C:\\김은주java\\6_spring_project\\sns\\workspace\\images/";
+	public final static String FILE_UPLOAD_PATH = "D:\\김은주\\6_spring-project\\sns\\workspace\\images/";
 	//학원 경로
 	//D:\김은주\6_spring-project\sns\workspace\images/
 	//집 경로

@@ -1,11 +1,10 @@
-package com.sns.Comment.model;
+package com.sns.comment.model;
 
 import java.sql.Date;
 
 public class Comment {
 
 	private int id;
-	private String loginId;
 	private int userId;
 	private int postId;
 	private String content;
@@ -14,14 +13,6 @@ public class Comment {
 
 	public int getId() {
 		return id;
-	}
-
-	public String getLoginId() {
-		return loginId;
-	}
-
-	public void setLoginId(String loginId) {
-		this.loginId = loginId;
 	}
 
 	public void setId(int id) {
