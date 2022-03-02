@@ -5,7 +5,7 @@ import com.sns.user.model.User;
 public class CommentView {
 
 	private Comment comment;
-	private User user;
+	private User user; 
 
 	public Comment getComment() {
 		return comment;

@@ -28,7 +28,7 @@ public class UserBO {
 	}
 	
 	public User getUserByuserId(int userId) {
-		return userDAO.getUserByuserId(userId);
+		return userDAO.selectUserByuserId(userId);
 	}
 	
 }

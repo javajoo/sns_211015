@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-    
-    
-    
 <form id="loginIdForm" method="post" action="/user/sign_in">
 
 <section class=" d-flex">
 
+   <!-- 왼쪽 사진 영역 -->
    <section class="logIn-image  d-flex justify-content-center col-7">
       <div><img src="https://cdn.pixabay.com/photo/2016/05/15/01/08/icon-1392950_960_720.png" width="450" height="600"></div>
    </section>
    
+   <!-- 오른쪽 로그인 영역 -->
    <section class="login-box border rounded d-flex justify-content-center align-items-center col-4">
       <div>
-         
-            
          <div class="d-flex justify-content-center mb-3">
             <div><input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디"></div>
          </div>
@@ -28,10 +25,6 @@
             <button type="submit" id="signInBtn" class="btn-primary form-control col-12">로그인</button>
          </div>
    
-         <!-- <div class="d-flex justify-content-center mb-3">
-            <a class="btn btn-light form-control col-12" href="/user/sign_up_view" >회원가입</a>
-         </div> -->
-         
          <div class="border rounded py-3 text-center">
             계정이 없으신가요? <a href="/user/sign_up_view">가입하기</a>
          </div>

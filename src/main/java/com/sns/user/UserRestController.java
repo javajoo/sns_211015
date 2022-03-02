@@ -96,8 +96,8 @@ public class UserRestController {
 		result.put("result", "success");
 		
 		if (user != null) {
-			HttpSession session = request.getSession();
-			session.setAttribute("userId", user.getId());
+			HttpSession session = request.getSession(); //db에 저장된 정보를 가져와야 하니까
+			session.setAttribute("userId", user.getId()); //"userId" : 내가 정한 이름
 			session.setAttribute("userName", user.getName());
 			session.setAttribute("userLoginId", user.getLoginId());
 			// 3가지 정보로 유저 세션 저장한다

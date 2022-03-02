@@ -6,34 +6,35 @@
 		<div class=" d-flex justify-content-center">
 
 			<div class="signUp-box border p-3 m-5">
-			<div class="text-secondary my-5"><b>친구들의 사진과 동영상을 보려면 가입하세요</b></div>	
+				<div class="text-secondary my-5"><b>친구들의 사진과 동영상을 보려면 가입하세요</b></div>	
 		
-		<div class="d-flex">
-			<input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디">
-			<div class="pl-3"><button type="button" id="loginIdCheckBtn" class="form-control btn-light col-4"><b>중복확인</b></button></div>
-		</div>
-		
-		<div id="idCheckLength" class="small text-primary font-weight-bold d-none">ID를 4자 이상 입력 해주세요.</div>
-		<div id="isCheck" class="small text-success font-weight-bold d-none">사용 가능한 아이디 입니다.</div>
-		<div id="isCheckDupliceted" class="small text-danger font-weight-bold d-none">중복된 아이디 입니다.</div>
-		
-		<div class="d-flex mt-3">
-			<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호">
-		</div>
-		
-		<div class="d-flex mt-3">
-			<input type="text" id="name" name="name" class="form-control" placeholder="이름">
-		</div>
-		
-		<div class="d-flex mt-3">
-			<input type="text" id="email" name="email" class="form-control" placeholder="이메일">
-		</div>
-		
-		<button type="submit" id="signUpBtn" class="form-control btn-primary mt-3 col-2 mb-5">회원가입</button>
-		
-		<div class="border rounded py-3 text-center login-box-bottom">
-				계정이 있으신가요? <a href="/user/sign_in_view">로그인</a>
-			</div>
+					<div class="d-flex">
+						<input type="text" id="loginId" name="loginId" class="form-control" placeholder="아이디">
+						<div class="pl-3"><button type="button" id="loginIdCheckBtn" class="form-control btn-light col-4"><b>중복확인</b></button></div>
+					</div>
+					
+					<!-- 중복확인 눌렀을 때 문구 -->
+					<div id="idCheckLength" class="small text-primary font-weight-bold d-none">ID를 4자 이상 입력 해주세요.</div>
+					<div id="isCheck" class="small text-success font-weight-bold d-none">사용 가능한 아이디 입니다.</div>
+					<div id="isCheckDupliceted" class="small text-danger font-weight-bold d-none">중복된 아이디 입니다.</div>
+					
+					<div class="d-flex mt-3">
+						<input type="password" id="password" name="password" class="form-control" placeholder="비밀번호">
+					</div>
+					
+					<div class="d-flex mt-3">
+						<input type="text" id="name" name="name" class="form-control" placeholder="이름">
+					</div>
+					
+					<div class="d-flex mt-3">
+						<input type="text" id="email" name="email" class="form-control" placeholder="이메일">
+					</div>
+					
+					<button type="submit" id="signUpBtn" class="form-control btn-primary mt-3 col-2 mb-5">회원가입</button>
+					
+					<div class="border rounded py-3 text-center login-box-bottom">
+						계정이 있으신가요? <a href="/user/sign_in_view">로그인</a>
+					</div>
 			
 			</div>
 		</div>

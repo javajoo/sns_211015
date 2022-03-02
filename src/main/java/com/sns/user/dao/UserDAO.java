@@ -21,5 +21,5 @@ public interface UserDAO {
 	
 	public User selectUserById(int id);
 	
-	public User getUserByuserId(int userId);
+	public User selectUserByuserId(int userId);
 }

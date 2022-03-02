@@ -32,7 +32,7 @@ public class ContentBO {
 	
 	
 	
-	// 로그인 되지 않아도 타임라인은 볼 수 있으므로 userId는 Integer
+	// 로그인 되지 않아도 타임라인은 볼 수 있으므로 userId는 Integer 	
 	public List<ContentView> generateContentViewList(Integer userId) {
 		
 		
