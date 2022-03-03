@@ -25,7 +25,7 @@ public class PostRestController {
 	private PostBO postsBO;
 	
 	/**
-	 * 테스트용 컨트롤러
+	 * 목록
 	 * @return
 	 */
 	@RequestMapping("/posts")
@@ -36,7 +36,7 @@ public class PostRestController {
 	@PostMapping("/create")
 	public Map<String, Object> create(
 			@RequestParam("content") String content,
-			@RequestParam(value ="file", required = false) MultipartFile file,
+			@RequestParam(value ="file", required = false) MultipartFile file, 
 			HttpServletRequest request
 			) {
 		
@@ -46,7 +46,7 @@ public class PostRestController {
 		// 글쓴이 정보를 세션에서 가져온다.
 		HttpSession session = request.getSession();
 		Integer userId = (Integer)session.getAttribute("userId");
-		String userLoginId = (String)session.getAttribute("userLoginId");
+		String userLoginId = (String)session.getAttribute("userLoginId"); //파일서비스매니저
 		
 		if (userId == null) { // 로그인 되어있지 않음
 			result.put("result", "error");

@@ -45,8 +45,12 @@ public class UserController {
 			HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
+		// 로그인 한거를 끊으려면 모두 끊어야 한다!!!!
+		session.removeAttribute("userLoginId");
 		session.removeAttribute("userName");
+		session.removeAttribute("userId");
 		
+		// 리다이렉트 안하면 @RequestMapping으로 넘어간다.
 		return "redirect:/user/sign_in_view";
 	}
 

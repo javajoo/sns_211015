@@ -44,7 +44,7 @@ public class CommentBO {
 			commentView.setComment(comment);
 			
 			// 댓글쓴이
-			User user = userBO.getUserById(comment.getUserId()); // pk
+			User user = userBO.getUserByuserId(comment.getUserId()); // pk
 			commentView.setUser(user);
 			
 			resultList.add(commentView);

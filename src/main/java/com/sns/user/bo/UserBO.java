@@ -11,24 +11,21 @@ public class UserBO {
 
 	@Autowired
 	private UserDAO userDAO;
-	
+
 	public boolean existLoginId(String loginId) {
 		return userDAO.existLoginId(loginId);
 	}
-	
-	public User getUserById(int id) {
-		return userDAO.selectUserById(id);
-	}
-	public int addUser(String loginId, String password, String name,String email) {
+
+	public int addUser(String loginId, String password, String name, String email) {
 		return userDAO.insertUser(loginId, password, name, email);
 	}
-	
-	public User getUserByLoginIdPassword (String loginId,String password) {
+
+	public User getUserByLoginIdPassword(String loginId, String password) {
 		return userDAO.selectUserByLoginIdPassword(loginId, password);
 	}
-	
-	public User getUserByuserId(int userId) {
+
+	public User getUserByuserId(int userId) { // user의 pk
 		return userDAO.selectUserByuserId(userId);
 	}
-	
+
 }

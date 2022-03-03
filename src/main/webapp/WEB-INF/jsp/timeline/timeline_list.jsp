@@ -33,13 +33,25 @@
 					</div>
 				</div>
 				<div>
+					<!-- 카드 이미지 -->
 					<img src="${content.post.imagePath}" alt="image" class="w-100 mt-3 mb-3" height="300"> 
-					<a href="#"><img src="/image/heart-icon.png" alt="image" width="25"></a> 
-					<a href="#"><img src="/image/heart-icon2.png" alt="image" width="25" class="d-none"></a>
+						
+					<!-- 좋아요/해제 : 로그인 된 상태에서만 쓸 수 있다 -->
+					<a href="#" class="like-btn" data-post-id="${content.post.id}" data-user-id="${content.user.id}">
+						<!-- 좋아요 해제 -->
+						<c:if test="${content.filledLike == false}">
+							<img src="/image/heart-icon.png" alt="image" width="25">
+						</c:if>
+						
+						<!-- 좋아요 -->
+						<c:if test="${content.filledLike == true}">
+							<img src="/image/heart-icon2.png" alt="image" width="25">
+						</c:if>
+					</a>
+					
 					<span><b>좋아요 11개</b></span>
 					<div class="mt-3">${content.post.content}</div>
 					<hr>
-					
 					
 					<!-- 댓글 목록 -->
 					<!-- 댓글이 있는 경우만 댓글영역 노출 -->
@@ -186,5 +198,34 @@
 					} 
 				});
 			});
+			
+			// 좋아요
+			$('.like-btn').on('click',function(e) {
+				//alert('click');
+				e.preventDefault();
+				var postId = $(this).data('post-id');
+				var userId = $(this).data('user-id');
+				
+				if (userId == '') {
+					alert('로그인 후에 이용가능합니다.');
+					return;
+				}
+				
+				//console.log(postId);
+				//console.log(userId);
+				
+				$.ajax({
+					type: "GET"
+					,url: "/like/{postId}"
+					,data: {"postId": postId}
+					,success: function(data) {
+						if (data.result == 'success') {
+							location.reload();
+						}
+					}
+					
+				});
+			});
+		
 		});
 	</script>
