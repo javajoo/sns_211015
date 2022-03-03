@@ -11,7 +11,7 @@ public class LikeBO {
 	@Autowired
 	private LikeDAO likeDAO;
 	
-	public void addLike (int postId , int userId){
+	public void addLike (int postId, int userId){
 		likeDAO.insertLike(postId, userId);
 		
 	}

@@ -29,7 +29,10 @@
 				<div class=" d-flex justify-content-between">
 					<div class="display-4 font-weight-bold text-secondary">${content.user.loginId}</div>
 					<div>
-						<a href="#"><img src="/image/more-icon.png" width="50" class="mt-2"></a>
+						<!-- 글쓴 사용자와 로그인 사용자가 일치할 때만 삭제 가능 -->
+						<c:if test="${userLoginId == content.user.loginId}">
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/image/more-icon.png" width="50" class="mt-2"></a>
+						</c:if>
 					</div>
 				</div>
 				<div>
@@ -83,6 +86,20 @@
 	</div>
 </div>
 
+<!-- Modal -->
+<div class="modal fade" id="moreModal">
+  <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+    <div class="modal-content">
+      	<!-- modal 창 안에 내용 넣기 -->
+      	<div>
+      		<!-- class="d-block" : 버튼 전체를 선택할 수 있게 해준다. -->
+      		<div class="my-3 text-center"><a href="#" class="del-post d-block">삭제하기</a></div>
+      		<hr>
+      		<div class="my-3 text-center"><a href="#" class="d-block" data-dismiss="modal">취소</a></div>
+      	</div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -113,7 +130,7 @@
 				if (extension.length < 2
 						|| (extension[extension.length - 1] != 'gif'
 								&& extension[extension.length - 1] != 'jpeg'
-								&& extension[extension.length - 1] != 'jpg' && extension[extension.length - 1] != 'png')) {
+								&& extensi3on[extension.length - 1] != 'jpg' && extension[extension.length - 1] != 'png')) {
 					alert('이미지 파일만 업로드 할 수 있습니다.');
 					$(this).val(''); // 비워주어야 한다.(파일자체를 지움)
 					$('#fileName').text(''); //파일 이름도 비워준다.
@@ -216,15 +233,40 @@
 				
 				$.ajax({
 					type: "GET"
-					,url: "/like/{postId}"
+					,url: "/like/${postId}"
 					,data: {"postId": postId}
 					,success: function(data) {
 						if (data.result == 'success') {
 							location.reload();
+						} else {
+							alert(data.errorMessage);
 						}
 					}
-					
+					,error: function(e) {
+						alert('관리자에게 문의해주세요.');
+					}
 				});
+			});
+			
+			// 카드에서 더보기(...) 클릭시 모달에 삭제될 글 번호를 넣어준다.
+			$('.more-btn').on('click',function(e) {
+				
+				
+				e.preventDefault();
+				var postId = $(this).data('post-id');
+				//alert(postId);
+				
+				$('#moreModal').data('post-id', postId);  // data-post-id = "1"
+				
+			});
+			
+			// 모달창 안에 있는 삭제하기 버튼 클릭
+			/* 모달 버튼 안에 있는 삭제 */
+			$('#moreModal .del-post').on('click',function(e) {
+				e.preventDefault(); // 모달 버튼은 해주는게 좋다!
+				
+				var postId = $('#moreModal').data('post-id');
+				alert(postId);
 			});
 		
 		});

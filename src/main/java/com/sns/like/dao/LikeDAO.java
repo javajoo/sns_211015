@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 public interface LikeDAO {
 	
 	public void insertLike (
-			@Param("postId") int postId , 
+			@Param("postId") int postId, 
 			@Param("userId") int userId);
 	
 }
