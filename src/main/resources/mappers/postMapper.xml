@@ -44,5 +44,7 @@
 			,`updatedAt`
  		FROM
  			`post`
+ 		WHERE
+ 			`id` = #{id}
  	</select>
  </mapper>
