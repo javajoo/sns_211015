@@ -47,4 +47,29 @@ public class PostBO {
 		// insert DAO
 		postDAO.insertPost(userId, content, imagePath);
 	}
+	
+	public void deletePostByPostIdUserId(int postId, int userId) {
+		// 삭제 할때 거기에 종속되어 있는게 뭐가 있는지 확인하고 삭제해야 한다.
+		// postId로 select Post
+		Post post = postDAO.selectPostList(postId);
+		
+		// 이미지가 있으면 이미지 삭제
+		
+		String imagePath = null;
+		if (imagePath != null) {
+			fileManager.deleteFile(imagePath);
+		}
+		
+		
+		// 글 삭제 byPostIdUserId
+		
+		// 댓글들 삭제 byPostId
+		
+		// 좋아요들 삭제 byPostId
+		
+		
+		
+		
+		
+	}
 }

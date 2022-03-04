@@ -265,6 +265,24 @@
 				
 				var postId = $('#moreModal').data('post-id');
 				alert(postId);
+				
+				// 삭제 ajax
+				$.ajax({
+					type: "DELETE"
+					,url: "/post/delete"
+					,data: {"postId" : postId}
+					,success: function(data) {
+						if (data.result == 'success') {
+							alert('삭제 되었습니다.');
+						}
+					}
+					,error: function(e) {
+						alert(data.errorMessage);
+					}
+					
+				});
+				
+				
 			});
 		
 		});

@@ -33,4 +33,16 @@
  			,NOW()	
  		)
  	</insert>
+ 	
+ 	<select id="selectPostListByPostId" parameterType="int" resultType="com.sns.post.model.Post">
+ 		SELECT
+	 		`id`
+			,`userId`
+			,`content`
+			,`imagePath`
+			,`createdAt`
+			,`updatedAt`
+ 		FROM
+ 			`post`
+ 	</select>
  </mapper>
