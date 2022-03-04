@@ -27,11 +27,11 @@
 		<div class="card">
 			<c:forEach items="${contentList}" var="content">
 				<div class=" d-flex justify-content-between">
-					<div class="display-4 font-weight-bold text-secondary">${content.user.loginId}</div>
+					<div class="font-weight-bold mt-3 mb-3 ml-2">${content.user.loginId}</div>
 					<div>
 						<!-- 글쓴 사용자와 로그인 사용자가 일치할 때만 삭제 가능 -->
 						<c:if test="${userLoginId == content.user.loginId}">
-						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/image/more-icon.png" width="50" class="mt-2"></a>
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/image/more-icon.png" width="30" class="mt-3 mb-3 mr-2"></a>
 						</c:if>
 					</div>
 				</div>
@@ -233,7 +233,7 @@
 				
 				$.ajax({
 					type: "GET"
-					,url: "/like/${postId}"
+					,url: "/like/" + postId
 					,data: {"postId": postId}
 					,success: function(data) {
 						if (data.result == 'success') {
@@ -250,8 +250,6 @@
 			
 			// 카드에서 더보기(...) 클릭시 모달에 삭제될 글 번호를 넣어준다.
 			$('.more-btn').on('click',function(e) {
-				
-				
 				e.preventDefault();
 				var postId = $(this).data('post-id');
 				//alert(postId);

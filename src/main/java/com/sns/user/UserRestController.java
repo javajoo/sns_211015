@@ -30,12 +30,13 @@ public class UserRestController {
 	 * @return
 	 */
 	@RequestMapping("/is_duplicated_id")
-	public Map<String, Object> isDuplicatedId(@RequestParam("loginId") String loginId) {
+	public Map<String, Object> isDuplicatedId(
+			@RequestParam("loginId") String loginId) {
 
 		Map<String, Object> result = new HashMap<>();
-		boolean existLoginId = userBO.existLoginId(loginId);
+//		boolean existLoginId = userBO.existLoginId(loginId);
 
-		result.put("result", existLoginId);
+		result.put("result", userBO.existLoginId(loginId));
 
 		return result;
 	}
@@ -50,8 +51,10 @@ public class UserRestController {
 	 * @return
 	 */
 	@PostMapping("/sign_up")
-	public Map<String, Object> signUp(@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password, @RequestParam("name") String name,
+	public Map<String, Object> signUp(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password, 
+			@RequestParam("name") String name,
 			@RequestParam("email") String email) {
 
 		// 비밀번호 암호화
@@ -79,8 +82,10 @@ public class UserRestController {
 	 * @return
 	 */
 	@PostMapping("/sign_in")
-	public Map<String, Object> signIn(@RequestParam("loginId") String loginId,
-			@RequestParam("password") String password, HttpServletRequest request) {
+	public Map<String, Object> signIn(
+			@RequestParam("loginId") String loginId,
+			@RequestParam("password") String password, 
+			HttpServletRequest request) {
 
 		// 비밀번호 암호화
 		String encrtptUtils = EncryptUtils.md5(password);

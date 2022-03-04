@@ -15,4 +15,6 @@ public class LikeBO {
 		likeDAO.insertLike(postId, userId);
 		
 	}
+	
+	
 }
