@@ -12,6 +12,8 @@ body {
 	background-color: #F9F9F9;
 }
 
+.timeline {background-color: #F9F9F9;}
+
 a:hover {
 	text-decoration: none;
 }

@@ -28,7 +28,7 @@ public class PostRestController {
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
 	@Autowired
-	private PostBO postsBO;
+	private PostBO postBO;
 
 	/**
 	 * 목록
@@ -37,7 +37,7 @@ public class PostRestController {
 	 */
 	@RequestMapping("/posts")
 	public List<Post> posts() {
-		return postsBO.getPostList();
+		return postBO.getPostList();
 	}
 
 	@PostMapping("/create")
@@ -59,7 +59,7 @@ public class PostRestController {
 		}
 
 		// userId, userLoginId, content, file -> BO insert 요청
-		postsBO.addPost(userId, userLoginId, content, file);
+		postBO.addPost(userId, userLoginId, content, file);
 
 		return result;
 	}
@@ -85,6 +85,8 @@ public class PostRestController {
 		}
 
 		//postBO
+	
+		postBO.deletePostByPostIdUserId(postId, userId);
 		
 		return result;
 

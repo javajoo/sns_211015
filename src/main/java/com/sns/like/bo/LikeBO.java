@@ -11,10 +11,35 @@ public class LikeBO {
 	@Autowired
 	private LikeDAO likeDAO;
 	
-	public void addLike (int postId, int userId){
-		likeDAO.insertLike(postId, userId);
+	public void like (int postId, int userId){
+		
+		boolean existList = existLike(postId, userId);
+		
+		
+		if (existList) {
+			likeDAO.deleteLikeByPostIdUserId(postId, userId);
+		} else {
+			likeDAO.insertLike(postId, userId);
+		}
 		
 	}
 	
+	public boolean existLike(int postId, Integer userId) {
+		// 비로그인 상태면 세팅된 좋아요는 없다
+		if (userId == null) {
+			return false;
+		}
+		int count = likeDAO.selectLikeCountByPostIdOrUserId(postId, userId);
+		return count > 0 ? true : false;
+	}
+	
+	
+	public int getLikeCountByPostId(int postId) {
+		return likeDAO.selectLikeCountByPostIdOrUserId(postId, null);
+	}
+	
+	public void deleteLikeByPostId(int postId) {
+		likeDAO.deleteLikeByPostId(postId);
+	}
 	
 }

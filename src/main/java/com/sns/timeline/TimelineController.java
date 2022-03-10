@@ -30,9 +30,9 @@ public class TimelineController {
 		// 웹 만들 때 null 허용할지 말지 정해야 한다.
 
 		// 하나의 카드 -> ContentView 객체 (VIEW용 객체)
-		List<ContentView> contentList = contentBO.generateContentViewList(userId);
+		List<ContentView> contentViewList = contentBO.generateContentViewList(userId);
 
-		model.addAttribute("contentList", contentList);
+		model.addAttribute("contentViewList", contentViewList);
 		model.addAttribute("viewName", "timeline/timeline_list");
 		return "template/layout";
 	}

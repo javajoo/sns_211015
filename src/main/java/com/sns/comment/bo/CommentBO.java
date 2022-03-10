@@ -23,9 +23,11 @@ public class CommentBO {
 	@Autowired
 	private UserBO userBO;
 	
-	public void insertComment(int postId,int userId,String content) {
-		commentDAO.insertComment(postId, userId, content);
+	public void createComment(int userId,int postId,   String content) {
+		commentDAO.insertComment(userId, postId, content);
 	}
+	
+
 	
 	public List<Comment> getCommentListByPostId(int postId) {
 		return commentDAO.selectCommentListByPostId(postId);
@@ -53,5 +55,17 @@ public class CommentBO {
 		
 		return resultList;
 	}
+	
+	public void deleteCommentByCommentIdAndUserId(int commentId, int userId) {
+		commentDAO.deleteCommentByCommentIdAndUserId(commentId, userId);
+	}
+	
+	
+	public void deleteCommentsByPostId(int postId) {
+		commentDAO.deleteCommentsByPostId(postId);
+	}
+	
+	
+	
 	
 }

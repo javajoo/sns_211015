@@ -13,6 +13,7 @@
 			,`updatedAt`
  		FROM
  			`post`
+ 		ORDER BY `id` DESC
  	</select>
  	
  	<insert id="insertPost" parameterType="map">
@@ -34,17 +35,27 @@
  		)
  	</insert>
  	
- 	<select id="selectPostListByPostId" parameterType="int" resultType="com.sns.post.model.Post">
- 		SELECT
-	 		`id`
+	<select id="selectPostByPostIdAndUserId" parameterType="map" resultType="com.sns.post.model.Post">
+		SELECT
+			`id`
 			,`userId`
 			,`content`
 			,`imagePath`
 			,`createdAt`
 			,`updatedAt`
- 		FROM
- 			`post`
- 		WHERE
- 			`id` = #{id}
- 	</select>
+		FROM
+			`post`
+		WHERE
+			`id` = #{postId}
+			AND `userId` = #{userId}
+	</select>
+	
+	<delete id="deletePost" parameterType="map">
+		DELETE
+		FROM	
+			`post`
+		WHERE
+			`id` = #{postId}
+			AND `userId` = #{userId}
+	</delete>
  </mapper>

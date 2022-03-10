@@ -7,6 +7,7 @@ spring:
   password: root
   
  mvc:
+  static-path-pattern: /static/**
   view: 
    prefix: /WEB-INF/jsp/
    suffix: .jsp

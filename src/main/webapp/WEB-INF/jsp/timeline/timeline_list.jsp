@@ -4,16 +4,16 @@
 
 
 <div class="d-flex justify-content-center">
-	<div class="w-50 my-5">
-
+	<div class="w-50 my-5 ">
+	
 
 		<!--상단: 글쓰기 영역 - 로그인 된 상태에서만 보임 -->
 		<c:if test="${not empty userId}">
-			<div id="writeBox" class="mb-3 border rounded bg-white">
+			<div>
 				<textarea id="content" name="content" rows="6" placeholder="내용을 입력해주세요" class="timeline-content form-control"></textarea>
-				<div class="d-flex justify-content-between m-1">
+				<div class="d-flex justify-content-between ">
 					<input type="file" id="file" name="file" accept=".jpg,.png,.jpeg,.gif" class="d-none"> 
-					<a href="#"	id="fileUpLoadBtn"><img src="/image/upload.jpg" width="50"></a>
+					<a href="#"	id="fileUpLoadBtn"><img src="/static/image/upload.jpg" width="50"></a>
 
 					<!--  업로드 될 임시 파일 이름 저장 될 곳-->
 					<div id="fileName"></div>
@@ -24,46 +24,51 @@
 		</c:if>
 
 		<!--하단: 타임라인 카드 영역 -->
-		<div class="card">
-			<c:forEach items="${contentList}" var="content">
+		<div>
+			<c:forEach items="${contentViewList}" var="content">
+				<div class="timeline m-3 border rounded bg-white">
 				<div class=" d-flex justify-content-between">
 					<div class="font-weight-bold mt-3 mb-3 ml-2">${content.user.loginId}</div>
 					<div>
 						<!-- 글쓴 사용자와 로그인 사용자가 일치할 때만 삭제 가능 -->
 						<c:if test="${userLoginId == content.user.loginId}">
-						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/image/more-icon.png" width="30" class="mt-3 mb-3 mr-2"></a>
+						<a href="#" class="more-btn" data-toggle="modal" data-target="#moreModal" data-post-id="${content.post.id}"><img src="/static/image/more-icon.png" width="30" class="mt-3 mb-3 mr-2"></a>
 						</c:if>
 					</div>
 				</div>
-				<div>
+				<div class="bg-white">
 					<!-- 카드 이미지 -->
 					<img src="${content.post.imagePath}" alt="image" class="w-100 mt-3 mb-3" height="300"> 
 						
 					<!-- 좋아요/해제 : 로그인 된 상태에서만 쓸 수 있다 -->
-					<a href="#" class="like-btn" data-post-id="${content.post.id}" data-user-id="${content.user.id}">
+					<a href="#" class="like-btn" data-post-id="${content.post.id}" >
 						<!-- 좋아요 해제 -->
 						<c:if test="${content.filledLike == false}">
-							<img src="/image/heart-icon.png" alt="image" width="25">
+							<img src="/static/image/heart-icon.png" alt="image" width="25" class="ml-2">
 						</c:if>
 						
 						<!-- 좋아요 -->
 						<c:if test="${content.filledLike == true}">
-							<img src="/image/heart-icon2.png" alt="image" width="25">
+							<img src="/static/image/heart-icon2.png" alt="image" width="25" class="ml-2">
 						</c:if>
 					</a>
 					
-					<span><b>좋아요 11개</b></span>
+					<span class="ml-1">좋아요 ${content.likeCount}개</span>
 					<div class="mt-3">${content.post.content}</div>
 					<hr>
 					
 					<!-- 댓글 목록 -->
 					<!-- 댓글이 있는 경우만 댓글영역 노출 -->
-					<c:if test="${not empty content.commentList}"> 
+					
+					<c:if test="${not empty content.commentList}">
 						<c:forEach items="${content.commentList}" var="comment">
 							<div class="d-flex">
 								<div class="mr-3"><b>${comment.user.loginId}</b></div>
 								<div class="mr-2">${comment.comment.content}</div>
-								<a href="#"><img src="/image/x-icon.png" width="10" height="10"></a>
+								<c:if test="${comment.user.id == userId}">
+									<a href="#"><img src="/static/image/x-icon.png" width="10" height="10" class="commentDelBtn"
+									data-comment-id="${comment.comment.id}"></a>
+								</c:if>								
 							</div>	
 						</c:forEach>
 					</c:if> 
@@ -71,7 +76,7 @@
 
 					<!--댓글 쓰기: 로그인 된 상태에서만 쓸 수 있다 -->
 					<c:if test="${not empty userId}">
-						<div class="input-group mb-3 mt-3">
+						<div class="input-group mb-3 mt-3 col-10">
 							<input type="text" class="form-control"	id="commentText${content.post.id}" placeholder="댓글달기">
 							<div class="input-group-prepend">
 								<span class="btn input-group-text commentBtn" data-post-id="${content.post.id}">게시</span>
@@ -80,6 +85,7 @@
 					</c:if>
 					
 					
+				</div>
 				</div>
 			</c:forEach>
 		</div>
@@ -156,7 +162,7 @@
 	
 				// 파일이 있지만 4개의 확장자가 없다면~
 				// 파일이 있으면 .jpg,.png,.jpeg,.gif
-				if (file != null) {
+				if (file != '') {
 					var ext = file.split('.').pop().toLowerCase(); // 파일 경로를 .으로 나누고 확장자가 있는 마지막 문자열을 가져온 후 모두 소문자로 변경
 					if ($.inArray(ext, [ 'jpg','png', 'jpeg', 'gif' ]) == -1) { //저장된 변수에 4개의 확장자가 없으면 
 						alert('jpg, png, jpeg, gif 파일만 업로드 할 수 있습니다.');
@@ -193,14 +199,21 @@
 	
 			// 댓글 쓰기 - 게시 버튼 클릭
 			$('.commentBtn').on('click',function(e) {
+				
+				e.preventDefault();
 				// 클릭된 게시글
 				var postId = $(this).data('post-id'); //data-post-id
-				alert(postId);
+				//alert(postId);
 	
 				// commentText2
 				let commentContent = $('#commentText' + postId).val().trim();
 				// let commentContent = $(this).siblings('input').val(); 동일선상에 있는 형재테그를 가져올 떄 
-				alert(commentContent);
+				//alert(commentContent);
+				
+				if (commentContent == '') {
+					alert('댓글을 입력해주세요');
+					return;
+				}
 				
 				$.ajax({
 					type: "post"
@@ -211,8 +224,13 @@
 						if (data.result == 'success') {
 							alert("댓글이 입력되었습니다.");
 							location.reload();
+						} else {
+							alert(data.errorMessage);
 						}
 					} 
+					,error: function() {
+						alert('관리자에게 문의해주세요');
+					}
 				});
 			});
 			
@@ -221,15 +239,8 @@
 				//alert('click');
 				e.preventDefault();
 				var postId = $(this).data('post-id');
-				var userId = $(this).data('user-id');
 				
-				if (userId == '') {
-					alert('로그인 후에 이용가능합니다.');
-					return;
-				}
 				
-				//console.log(postId);
-				//console.log(userId);
 				
 				$.ajax({
 					type: "GET"
@@ -274,10 +285,13 @@
 					,success: function(data) {
 						if (data.result == 'success') {
 							alert('삭제 되었습니다.');
+							location.reload();
+						} else {
+							alert(data.errorMessage);
 						}
 					}
 					,error: function(e) {
-						alert(data.errorMessage);
+						alert('관리자에게 문의해주세요');
 					}
 					
 				});
@@ -285,5 +299,29 @@
 				
 			});
 		
+			
+			$('.commentDelBtn').on('click', function(e) {
+				e.preventDefault(); // a 기본 동작 중단
+				
+				let commentId = $(this).data('comment-id');
+				//alert(commentId);
+				
+				$.ajax({
+					type:"delete"
+					, url:"/comment/delete"
+					, data:{"commentId":commentId}
+					, success:function(data) {
+						if (data.result == "success") {
+							alert("댓글이 삭제되었습니다.");
+							location.reload();
+						} else {
+							alert(data.errorMessage);
+						}
+					}
+					, error:function(e) {
+						alert("댓글 삭제가 실패했습니다. 관리자에게 문의해주세요.");
+					}
+				});
+			});
 		});
 	</script>

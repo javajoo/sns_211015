@@ -19,4 +19,45 @@
 	 	
 	 </insert>
 	 
+	 
+	 <!-- 좋아요가 존재하는지 여부와 좋아요 수를 가져오는 쿼리로 재활용 -->
+	 <select id="selectLikeCountByPostIdOrUserId" parameterType="map" resultType="int">
+	 	SELECT
+	 		COUNT(*)
+	 	FROM
+	 		`like`
+	 	WHERE
+	 		`postId` = #{postId}
+	 		<if test="userId != null">
+	 		AND `userId` = #{userId}
+	 		</if>
+	 </select>
+	 
+	  <select id="selectLikeCountByPostId" parameterType="int" resultType="int">
+	 	SELECT
+	 		COUNT(*)
+	 	FROM
+	 		`like`
+	 	WHERE
+	 		`postId` = #{postId}
+	 </select>
+	 
+	 
+	<delete id="deleteLikeByPostIdUserId" parameterType="map">
+	 	DELETE
+	 	FROM
+	 		`like`
+	 	WHERE
+	 		postId = #{postId}
+	 		AND userId = #{userId}
+	 </delete>
+	 
+	 <delete id="deleteLikeByPostId" parameterType="integer">
+	 	DELETE
+	 	FROM
+	 		`like`
+	 	WHERE
+	 		postId = #{postId}
+	 </delete>
+	 
  </mapper>
